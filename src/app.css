@@ -7,6 +7,14 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
+  /* CSS Variablen für Dark Mode */
+  --background-color: #242424;
+  --card-background: #1a1a1a;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --text-color-secondary: rgba(255, 255, 255, 0.6);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --completed-match-background: #1b3a1b;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -69,6 +77,14 @@ button:focus-visible {
   :root {
     color: #213547;
     background-color: #ffffff;
+    
+    /* CSS Variablen für Light Mode */
+    --background-color: #ffffff;
+    --card-background: #f5f5f5;
+    --text-color: #213547;
+    --text-color-secondary: #666666;
+    --border-color: #eeeeee;
+    --completed-match-background: #e8f5e9;
   }
   a:hover {
     color: #747bff;

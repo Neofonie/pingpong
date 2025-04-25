@@ -2,6 +2,7 @@
   import PlayerForm from './lib/components/PlayerForm.svelte';
   import TournamentBracket from './lib/components/TournamentBracket.svelte';
   import CurrentMatch from './lib/components/CurrentMatch.svelte';
+  import WinnerAnimation from './lib/components/WinnerAnimation.svelte';
   import { tournament } from './lib/stores';
   
   function startTournament() {
@@ -31,6 +32,7 @@
   
   <CurrentMatch />
   <TournamentBracket />
+  <WinnerAnimation />
 </main>
 
 <style>

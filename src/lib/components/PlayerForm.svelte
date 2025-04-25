@@ -74,7 +74,7 @@
   }
 
   .player-list {
-    background-color: white;
+    background-color: var(--background-color);
     padding: 1rem;
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -82,7 +82,7 @@
 
   h3 {
     margin: 0 0 1rem 0;
-    color: #333;
+    color: var(--text-color);
   }
 
   ul {
@@ -93,7 +93,8 @@
 
   li {
     padding: 0.5rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
   }
 
   li:last-child {
@@ -101,7 +102,7 @@
   }
 
   .empty-message {
-    color: #666;
+    color: var(--text-color-secondary);
     font-style: italic;
   }
 </style> 

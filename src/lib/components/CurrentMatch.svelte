@@ -23,6 +23,13 @@
     } else {
       player2Score = increment ? player2Score + 1 : Math.max(0, player2Score - 1);
     }
+
+    // Prüfe auf Gewinnbedingungen
+    if (player1Score >= 11 && player1Score - player2Score >= 2 && currentMatch?.player1) {
+      setWinner(currentMatch.player1);
+    } else if (player2Score >= 11 && player2Score - player1Score >= 2 && currentMatch?.player2) {
+      setWinner(currentMatch.player2);
+    }
   }
 
   function toggleMarker(player: 'player1' | 'player2', index: number) {
@@ -119,7 +126,7 @@
   .current-match {
     margin: 2rem 0;
     padding: 2rem;
-    background-color: #fff;
+    background-color: var(--background-color);
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
@@ -135,7 +142,7 @@
     flex: 1;
     text-align: center;
     padding: 1rem;
-    background-color: #f5f5f5;
+    background-color: var(--card-background);
     border-radius: 8px;
   }
   
@@ -143,7 +150,7 @@
     margin: 0 2rem;
     font-size: 2rem;
     font-weight: bold;
-    color: #666;
+    color: var(--text-color-secondary);
   }
   
   .winner-button {
@@ -162,12 +169,12 @@
   
   h2 {
     margin: 0;
-    color: #333;
+    color: var(--text-color);
   }
   
   h3 {
     margin: 0 0 1rem 0;
-    color: #444;
+    color: var(--text-color);
   }
 
   .score-section {
@@ -186,11 +193,11 @@
   .marker {
     width: 24px;
     height: 24px;
-    border: 2px solid #666;
+    border: 2px solid var(--border-color);
     border-radius: 50%;
     padding: 0;
     cursor: pointer;
-    background: white;
+    background: var(--background-color);
   }
 
   .marker.filled {
@@ -208,6 +215,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     min-width: 2rem;
+    color: var(--text-color);
   }
 
   .score-button {

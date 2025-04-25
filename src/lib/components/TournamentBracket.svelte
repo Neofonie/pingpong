@@ -47,7 +47,7 @@
   .tournament-bracket {
     margin: 2rem 0;
     padding: 1rem;
-    background-color: #f5f5f5;
+    background-color: var(--background-color);
     border-radius: 8px;
   }
   
@@ -67,7 +67,7 @@
   }
   
   .match {
-    background: white;
+    background: var(--card-background);
     padding: 1rem;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -79,12 +79,13 @@
   }
   
   .match.completed {
-    background-color: #e8f5e9;
+    background-color: var(--completed-match-background);
   }
   
   .player {
     padding: 0.5rem;
     border-radius: 4px;
+    color: var(--text-color);
   }
   
   .player.winner {
@@ -94,7 +95,7 @@
   
   .vs {
     text-align: center;
-    color: #666;
+    color: var(--text-color-secondary);
     margin: 0.5rem 0;
   }
 </style> 
