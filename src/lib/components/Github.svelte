@@ -29,6 +29,7 @@
         position: fixed;
         z-index: 3;
         right: 0;
+        top: 0;
         height: 0;
     }
 
