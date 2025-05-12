@@ -1,5 +1,6 @@
 <script lang="ts">
   import PlayerForm from './lib/components/PlayerForm.svelte';
+  import Github from './lib/components/Github.svelte';
   import TournamentBracket from './lib/components/TournamentBracket.svelte';
   import CurrentMatch from './lib/components/CurrentMatch.svelte';
   import WinnerAnimation from './lib/components/WinnerAnimation.svelte';
@@ -20,6 +21,8 @@
 
 <main>
   <h1>Turnier Manager</h1>
+
+  <Github />
   
   <div class="controls">
     <PlayerForm />
