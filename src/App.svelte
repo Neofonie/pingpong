@@ -18,6 +18,10 @@
   }
 </script>
 
+<svelte:head>
+  <base href="{import.meta.env.VITE_BASE_PATH || '/'}">
+</svelte:head>
+
 <main>
   <h1>Turnier Manager</h1>
   

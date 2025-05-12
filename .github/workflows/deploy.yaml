@@ -19,7 +19,7 @@ jobs:
       - name: Run npm ci and build
         run: |
           npm ci
-          npm run build
+          VITE_BASE_PATH=/pingpong/ npm run build
 
       - name: Deploy to gh-pages 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v4
