@@ -1,27 +1,29 @@
 <script lang="ts">
-  import { tournament } from '../stores';
-  import { onMount } from 'svelte';
-  
+  import { tournament } from "../stores";
+  import { onMount } from "svelte";
+
   $: matches = $tournament.matches;
   $: players = $tournament.players;
-  
+
   // Prüfe, ob alle Spiele abgeschlossen sind
-  $: allMatchesCompleted = matches.length > 0 && matches.every(match => match.winner);
-  
+  $: allMatchesCompleted =
+    matches.length > 0 && matches.every((match) => match.winner);
+
   // Finde den Turniersieger
   $: tournamentWinner = (() => {
     if (!allMatchesCompleted) return null;
-    
+
     // Finde den Spieler, der das letzte Spiel gewonnen hat
     const lastMatch = matches[matches.length - 1];
     return lastMatch.winner;
   })();
-  
+
   $: showAnimation = allMatchesCompleted && tournamentWinner !== null;
   $: winner = showAnimation ? tournamentWinner : null;
 
   let showTrophy = false;
   let showFireworks = false;
+  let visible = true; // Neu: Sichtbarkeit des Screens
 
   onMount(() => {
     if (showAnimation) {
@@ -33,21 +35,32 @@
       }, 1500);
     }
   });
+
+  function close() {
+    visible = false;
+  }
 </script>
 
-{#if showAnimation && winner}
+{#if showAnimation && winner && visible}
   <div class="winner-animation">
     <div class="confetti-container">
       {#each Array(50) as _, i}
-        <div class="confetti" style="--delay: {i * 0.1}s; --rotation: {Math.random() * 360}deg; --x: {Math.random() * 100}vw; --y: {Math.random() * 100}vh;">
-        </div>
+        <div
+          class="confetti"
+          style="--delay: {i * 0.1}s; --rotation: {Math.random() *
+            360}deg; --x: {Math.random() * 100}vw; --y: {Math.random() *
+            100}vh;"
+        ></div>
       {/each}
     </div>
 
     {#if showFireworks}
       <div class="fireworks-container">
         {#each Array(5) as _, i}
-          <div class="firework" style="--delay: {i * 0.5}s; --x: {Math.random() * 100}vw;">
+          <div
+            class="firework"
+            style="--delay: {i * 0.5}s; --x: {Math.random() * 100}vw;"
+          >
             <div class="explosion"></div>
           </div>
         {/each}
@@ -61,6 +74,9 @@
       {#if showTrophy}
         <div class="trophy">🏆</div>
       {/if}
+      <button class="center-close-btn" on:click={close} aria-label="Schließen"
+        >Schließen</button
+      >
     </div>
   </div>
 {/if}
@@ -77,6 +93,28 @@
     align-items: center;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 1000;
+  }
+
+  .center-close-btn {
+    display: block;
+    margin: 2rem auto 0 auto;
+    padding: 1rem 2.5rem;
+    background: #ffd700;
+    color: #222;
+    border: none;
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition:
+      background 0.2s,
+      color 0.2s;
+  }
+
+  .center-close-btn:hover {
+    background: #fff3a0;
+    color: #000;
   }
 
   .confetti-container {
@@ -99,9 +137,15 @@
     top: -10px;
   }
 
-  .confetti:nth-child(3n) { background-color: #0f0; }
-  .confetti:nth-child(3n+1) { background-color: #00f; }
-  .confetti:nth-child(3n+2) { background-color: #ff0; }
+  .confetti:nth-child(3n) {
+    background-color: #0f0;
+  }
+  .confetti:nth-child(3n + 1) {
+    background-color: #00f;
+  }
+  .confetti:nth-child(3n + 2) {
+    background-color: #ff0;
+  }
 
   @keyframes confetti-fall {
     0% {
@@ -209,7 +253,9 @@
       text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     }
     100% {
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.6);
+      text-shadow:
+        0 0 20px rgba(255, 215, 0, 0.8),
+        0 0 30px rgba(255, 215, 0, 0.6);
     }
   }
 
@@ -222,4 +268,4 @@
     font-size: 1.5rem;
     margin: 1rem 0;
   }
-</style> 
+</style>
